@@ -19,9 +19,9 @@ author: Saranya Canchi
 
 navbar-links:
   About Me: "aboutme"
+  Publications: "publications"
   Projects:
     - CFDE: "https://www.nih-cfde.org"
-    - Papers: "publications"
   Resources:
     - Useful Links: "links"
     - Data Carpentry: "https://datacarpentry.org"
