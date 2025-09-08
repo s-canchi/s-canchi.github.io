@@ -1,0 +1,262 @@
+/* general site background and body */
+body, .page-col, .content, .container, .container-md {
+  background: #2C3531 !important;
+  color: #F3F3F3 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* splash page background and elements*/
+/* main splash gradient and text color */
+body.splash, .splash {
+  background: linear-gradient(135deg, #116466 0%, #2C3531 100%) !important;
+  color: #F3F3F3 !important;
+}
+
+/* remove backgrounds/boxes for all splash containers */
+body.splash .container,
+body.splash .container-md,
+body.splash .page-col,
+body.splash .footer,
+body.splash .intro-header,
+body.splash .content,
+body.splash footer,
+body.splash .well,
+body.splash .panel {
+  background: transparent !important;
+  color: #F3F3F3 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* hide nav and footer on splash */
+body.splash .navbar,
+body.splash .footer,
+body.splash footer,
+body.splash .footer *,
+body.splash footer * {
+  display: none !important;
+}
+
+/* animated dots bg fills viewport */
+#splash-background {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: linear-gradient(135deg, #116466 0%, #2C3531 100%) !important;
+  pointer-events: none;
+  overflow: hidden;
+}
+#splash-background, #splash-background canvas {
+  display: block !important;
+  z-index: 0 !important;
+}
+
+/* splash hero block above dots bg */
+.splash-hero {
+  position: relative;
+  z-index: 2;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 8vh;
+}
+.splash-hero h1 {
+  color: #F3F3F3 !important;
+  font-size: 3em;
+  margin-top: 1.2em;
+  margin-bottom: 0.25em;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.splash-intro {
+  color: #F3F3F3 !important;
+  font-size: 1.25em;
+  margin-bottom: 2em;
+}
+.splash-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.3em;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+/* splash nav/site buttons */
+.splash-links .site-button,
+.site-button,
+.btn,
+.button {
+  display: inline-block;
+  padding: 1em 2.2em;
+  background: #D9B08C;
+  color: #2C3531;
+  border-radius: 40px;
+  font-size: 1.25em;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 3px 16px rgba(20,40,60,0.08);
+  transition: background 0.22s, color 0.22s, box-shadow 0.22s;
+  border: none;
+}
+/* fix for splash button text colors */
+body.splash .splash-links .site-button,
+body.splash .site-button {
+  color: #2C3531 !important;
+}
+body.splash .splash-links .site-button:hover,
+body.splash .site-button:hover,
+body.splash .splash-links .site-button:focus,
+body.splash .site-button:focus {
+  background: #D1E8E2 !important;
+  color: #116466 !important;
+}
+.splash-links .site-button:hover,
+.site-button:hover,
+.btn:hover,
+.button:hover,
+.splash-links .site-button:focus,
+.site-button:focus,
+.btn:focus,
+.button:focus {
+  background: #D1E8E2 !important;
+  color: #116466 !important;
+  box-shadow: 0 0 0 rgba(0,0,0,0.18);
+}
+
+/* nav bar, footer, dropdowns */
+.navbar, .footer, footer {
+  background: #116466 !important;
+  color: #D1E8E2 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+.navbar .navbar-brand,
+.navbar a,
+.navbar-nav .nav-link {
+  color: #D9B08C !important;
+}
+.navbar .navbar-brand:hover,
+.navbar-nav .nav-link:hover,
+.navbar a:hover {
+  color: #D1E8E2 !important;
+}
+.navbar-border {
+  border-color: #2C3531 !important;
+}
+.dropdown-menu {
+  background-color: #116466 !important;
+  color: #F3F3F3 !important;
+  border: none !important;
+}
+.dropdown-item {
+  color: #F3F3F3 !important;
+  background-color: transparent !important;
+}
+.dropdown-item:hover, .dropdown-item:focus {
+  color: #116466 !important;
+  background-color: #D9B08C !important;
+  font-weight: 600;
+}
+.dropdown-item:focus, .dropdown-item:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* social links */
+.footer a, .footer a:visited {
+  color: #D1E8E2 !important;
+}
+.footer a:hover {
+  color: #F3F3F3 !important;
+}
+.footer strong, .footer .copyright, .footer .author, .footer .site-title {
+  color: #D9B08C !important;
+  font-weight: 700;
+}
+.footer .fa, .footer .fab, .footer .fas {
+  color: #D1E8E2 !important;
+  transition: color 0.18s;
+}
+.footer .fa:hover, .footer .fab:hover, .footer .fas:hover {
+  color: #D9B08C !important;
+}
+
+/* force all footer/container backgrounds transparent */
+.footer *, .footer .container, .footer .container-md, .footer .footer-inner,
+footer *, footer .container, footer .container-md, footer .footer-inner {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* headings, text, and links */
+h1, h2, h3, h4, h5, h6,
+.site-title, .site-description, .author, .blog-tags {
+  color: #F3F3F3 !important;
+}
+p, li, blockquote, .post-entry, .post-content, .well, .panel {
+  color: #F3F3F3 !important;
+}
+a, .page-col a, .content a {
+  color: #D9B08C !important;
+}
+a:hover, .page-col a:hover, .content a:hover {
+  color: #D1E8E2 !important;
+}
+
+/* page/post content containers/cards */
+.card, .post-preview, .well, .panel, .post-entry, .post-content, .page-col, .content, .container, .container-md {
+  background: #2C3531 !important;
+  color: #F3F3F3 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* responsive (mobile) */
+@media (max-width: 600px) {
+  .splash-hero { padding-top: 4vh; min-height: 70vh; }
+  .splash-links { flex-direction: column; gap: .9em; }
+  .site-button { width: 90%; font-size: 1em; }
+}
+
+/* remove text-shadow on headings if theme adds it */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: none !important;
+}
+
+/* remove bootstrap blue outline/glow on dropdowns by overriding box-shadow and outline for focused toggles/nav-links */
+.dropdown-menu:focus, .dropdown-menu:active, 
+.dropdown.show .dropdown-toggle:focus, 
+.navbar-nav .show > .nav-link:focus, 
+.navbar-nav .show > .nav-link:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* force all dropdown items to have your color scheme on focus */
+.dropdown-item:focus, .dropdown-item:active, .dropdown-item:visited, .dropdown-item:hover {
+  background: #D9B08C !important;
+  color: #116466 !important;
+}
+
+/* remove box-shadow from .dropdown-toggle button if used */
+.dropdown-toggle:focus, .dropdown-toggle:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background: #D9B08C !important;
+  color: #116466 !important;
+}
+
+/* extra kill-switch for odd border or glow */
+.dropdown-menu, .dropdown-menu:focus, .dropdown-menu:active, .dropdown-toggle, .dropdown-toggle:focus {
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}

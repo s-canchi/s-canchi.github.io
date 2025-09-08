@@ -107,17 +107,16 @@ feed_show_tags: true
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-#navbar-col: "#EAEAEA"
-navbar-col: "#AEDBD9"
-navbar-text-col: "#404040"
-navbar-border-col: "#DDDDDD"
-page-col: "#FFFFFF"
-text-col: "#404040"
-link-col: "#008AFF"
-hover-col: "#0085A1"
-footer-col: "#AEDBD9"
-footer-text-col: "#777777"
-footer-link-col: "#404040"
+navbar-col: "#116466"            # Deep teal — navbar background
+navbar-text-col: "#D9B08C"       # Sand — navbar tab/link text
+navbar-border-col: "#2C3531"     # Dark gray-green—navbar border (subtle divider)
+page-col: "#2C3531"              # Main page background (gray-green)
+text-col: "#F3F3F3"              # Nearly white for easy reading on all dark bgs
+link-col: "#D9B08C"              # Sand — links in page content
+hover-col: "#D1E8E2"             # Mint — link hover and button hover bg
+footer-col: "#116466"            # Deep teal — footer background
+footer-text-col: "#D1E8E2"       # Mint — default footer text
+footer-link-col: "#D9B08C"       # Sand — footer links
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
@@ -130,12 +129,12 @@ footer-link-col: "#404040"
 #mobile-theme-col: "#0085A1"
 
 # For any extra visual customization, you can include additional CSS files in every page on your site. List any custom CSS files here
-#site-css:
-#  - "/assets/css/custom-styles.css"
+site-css:
+  - "/assets/css/custom-styles.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
-#site-js:
-#  - "/assets/js/custom-script.js"
+site-js:
+  - "/assets/js/animated-dots.js"
 
 # --- Web Analytics Section --- #
 
