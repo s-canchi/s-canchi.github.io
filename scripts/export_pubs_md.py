@@ -12,7 +12,7 @@ author = scholarly.search_author_id(SK_ID)
 publications = list(scholarly.fill(author, sections=['publications'])['publications'])
 N = 10
 
-md_out = "# Publications\n\n"
+md_out =  ""
 for pub in publications[:N]:
     pub_filled = scholarly.fill(pub)
     title = pub_filled.get("bib", {}).get("title", "Untitled")

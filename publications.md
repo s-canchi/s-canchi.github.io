@@ -1,4 +1,3 @@
-# Publications
 
 S Canchi, B Raao, D Masliah, S B Rosenthal, R Sasik, K M Fisch, P L D Jager, D A Bennett, R A Rissman (2019). Integrating gene and protein expression reveals perturbed functional networks in Alzheimer’s disease. *Cell reports*.
 
