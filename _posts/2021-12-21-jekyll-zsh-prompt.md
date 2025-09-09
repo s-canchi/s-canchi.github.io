@@ -2,8 +2,6 @@
 layout: post
 title: Personalize Zsh Prompt
 subtitle: Tweaking the zsh prompt using Oh My Zsh 
-#gh-repo: daattali/beautiful-jekyll
-#gh-badge: [star, fork, follow]
 tags: [Zsh, Oh My Zsh, Command Prompt]
 comments: true
 ---

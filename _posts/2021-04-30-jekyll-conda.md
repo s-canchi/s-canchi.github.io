@@ -2,8 +2,6 @@
 layout: post
 title: Jekyll with conda
 subtitle: Setting up a blog site with jekyll using conda
-#gh-repo: daattali/beautiful-jekyll
-#gh-badge: [star, fork, follow]
 tags: [Jekyll, Conda, Blog]
 comments: true
 ---
