@@ -347,105 +347,28 @@ pre code, .highlight code {
   box-shadow: none;
 }
 
-:root {
-  --code-bg: #1d2321;
-  --code-fg: #E3F6F1;
-  --highlight-mint: #D1E8E2;
-  --highlight-sand: #D9B08C;
-  --highlight-softred: #A95353;
-  --highlight-note: #A6B5A8;
+/* 1. Only true shell prompts $ (as .gp/.prompt) get the soft red, bold */
+.highlight .gp, .highlight .prompt {
+  color: var(--color-accent-err) !important;
+  font-weight: bold !important;
+  background: none !important;
 }
 
-/* Block & inline code */
-pre, .highlight pre, .box-note pre {
-  background: var(--code-bg) !important;
-  color: var(--code-fg) !important;
-  border-radius: 7px !important;
-  border: 1.5px solid #233029 !important;
-  box-shadow: 0 2px 20px rgba(30,45,40,0.12) !important;
-  padding: 1.1em 1.4em !important;
-  margin: 1.3em 0 !important;
-  font-size: 1em !important;
-  line-height: 1.54 !important;
-  white-space: pre-wrap !important;
-  word-break: break-all !important;
-  display: block !important;
-  overflow-x: visible !important;
-}
-code, .box-note code, .post-content code, .page-col code {
-  display: inline;
-  background: var(--code-bg) !important;
-  color: var(--code-fg) !important;
-  border-radius: 5px !important;
+/* Inline code: mint, no background, no border */
+code, .post-content code, .page-col code, .box-note code {
+  background: transparent !important;
+  color: var(--color-accent-mint) !important;
+  border-radius: 0 !important;
   border: none !important;
-  padding: 0.1em 0.38em !important;
-  margin: 0 0.1em !important;
   font-size: 1em !important;
-  font-family: "Fira Mono", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace !important;
+  font-family: "Fira Mono", "SFMono-Regular", Menlo, Monaco, "Liberation Mono", monospace !important;
+  padding: 0 !important;
+  margin: 0 0.05em !important;
   box-shadow: none !important;
   word-break: break-word;
 }
-.box-note {
-  background: var(--code-bg) !important;
-  border-left: 8px solid var(--highlight-sand) !important;
-  color: var(--code-fg) !important;
-  border-radius: 7px !important;
-  box-shadow: 0 2px 20px rgba(30,45,40,0.12) !important;
-  margin: 1.3em 0 !important;
-  padding: 1.1em 1.4em !important;
-}
-.highlight, .highlighter-rouge {
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
 
-/* ======= COLOR RESET: Force all highlight classes to base mint-offwhite ======= */
-.highlight span,
-.highlight .c, .highlight .err, .highlight .g, .highlight .k, .highlight .l,
-.highlight .n, .highlight .o, .highlight .x, .highlight .p, .highlight .cm,
-.highlight .cp, .highlight .c1, .highlight .cs, .highlight .gd, .highlight .ge,
-.highlight .gr, .highlight .gh, .highlight .gi, .highlight .go, .highlight .gp,
-.highlight .gs, .highlight .gu, .highlight .gt, .highlight .kc, .highlight .kd,
-.highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt, .highlight .m,
-.highlight .s, .highlight .na, .highlight .nb, .highlight .nc, .highlight .no,
-.highlight .nd, .highlight .ne, .highlight .nf, .highlight .ni, .highlight .nl,
-.highlight .nn, .highlight .nx, .highlight .py, .highlight .nt, .highlight .nv,
-.highlight .ow, .highlight .w, .highlight .mb, .highlight .mf, .highlight .mh,
-.highlight .mi, .highlight .mo, .highlight .il, .highlight .dl, .highlight .sd,
-.highlight .ss, .highlight .si, .highlight .se, .highlight .s1, .highlight .s2,
-.highlight .sr, .highlight .sb, .highlight .sc, .highlight .u, .highlight .g, .highlight .gs,
-.highlight .gd, .highlight .gi, .highlight .gr, .highlight .gt, .highlight .gu
-{
-  color: var(--code-fg) !important;
-  background: none !important;
-  font-weight: normal !important;
-  font-style: normal !important;
-  text-decoration: none !important;
-}
-
-/* ======= RE-APPLY only desired pop colors below ======= */
-.highlight .gp, .highlight .prompt {
-  color: var(--highlight-softred) !important;
-  font-weight: bold !important;
-}
-.highlight .nv {
-  color: var(--highlight-softred) !important;
-  font-weight: bold !important;
-}
-.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .sd,
-.highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx,
-.highlight .sr, .highlight .s1, .highlight .ss {
-  color: var(--highlight-sand) !important;
-}
-.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs, .highlight .cp {
-  color: var(--highlight-note) !important;
-  font-style: italic !important;
-}
-/* Optional: error red for err only when it's not a prompt or variable */
-.highlight .err {
-  color: var(--highlight-softred) !important;
-  font-weight: normal !important;
+/* Single-quoted strings: soft red */
+.highlight .s1 {
+  color: var(--color-accent-err) !important;
 }
