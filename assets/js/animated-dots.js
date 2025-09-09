@@ -1,7 +1,10 @@
-(function () {
+document.addEventListener("DOMContentLoaded", function () {
+  var splashBg = document.getElementById("splash-background");
+  if (!splashBg) return; // Do nothing if not on splash page
+
   var canvas = document.createElement("canvas");
   canvas.id = "dots-canvas";
-  document.getElementById("splash-background").appendChild(canvas);
+  splashBg.appendChild(canvas);
   var ctx = canvas.getContext("2d");
 
   function resize() {
@@ -41,4 +44,4 @@
     requestAnimationFrame(animate);
   }
   animate();
-})();
+});

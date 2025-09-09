@@ -134,8 +134,8 @@ site-css:
   - "/assets/css/custom-styles.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
-site-js:
-  - "/assets/js/animated-dots.js"
+#site-js:
+#  - "/assets/js/animated-dots.js"
 
 # --- Web Analytics Section --- #
 

@@ -1,101 +1,108 @@
-/* general site background and body */
+/* ——— Universal colors (use your palette) ——— */
+:root {
+  --color-bg-main:     #2C3531;
+  --color-bg-card:     #31423D;     /* Lighter dark for inline code (notebox) */
+  --color-bg-panel:    #233029;     /* Deep dark for code in notes/blocks */
+  --color-bg-footer:   #116466;
+  --color-accent-sand: #D9B08C;
+  --color-accent-mint: #D1E8E2;
+  --color-accent-green:#3CB371;
+  --color-accent-warn: #FFD580;
+  --color-accent-err:  #A95353;
+  --color-accent-prompt: #FA5252;
+  --color-font-main:   #F3F3F3;
+  --color-font-note:   #A6B5A8;
+}
+
+/* ——— General backgrounds and site elements ——— */
 body, .page-col, .content, .container, .container-md {
-  background: #2C3531 !important;
-  color: #F3F3F3 !important;
-  box-shadow: none !important;
-  border: none !important;
+  background: var(--color-bg-main);
+  color: var(--color-font-main);
+  box-shadow: none;
+  border: none;
+}
+h1, h2, h3, h4, h5, h6,
+.site-title, .site-description, .author, .blog-tags {
+  color: var(--color-font-main);
+  text-shadow: none;
+}
+p, li, blockquote, .post-entry, .post-content {
+  color: var(--color-font-main);
 }
 
-/* splash page background and elements*/
-/* main splash gradient and text color */
+a { color: var(--color-accent-sand); text-decoration: none; }
+a:hover, a:focus { color: var(--color-accent-mint); }
+.post-content a,
+.page-col a,
+.blog-tags a,
+.box-note a,
+.box a,
+.note a,
+.admonition a,
+.notice a {
+  text-decoration: underline;
+}
+.navbar a, .navbar-nav .nav-link, .navbar .navbar-brand,
+.footer a, .footer .fa, .footer .fab, .footer .fas {
+  text-decoration: none !important;
+}
+
+blockquote {
+  color: var(--color-font-note);
+  border-left: 5px solid var(--color-accent-mint);
+}
+
+/* ——— Splash Page ——— */
 body.splash, .splash {
-  background: linear-gradient(135deg, #116466 0%, #2C3531 100%) !important;
-  color: #F3F3F3 !important;
+  background: linear-gradient(135deg, #116466 0%, #2C3531 100%);
+  color: var(--color-font-main);
 }
-
-/* remove backgrounds/boxes for all splash containers */
 body.splash .container,
 body.splash .container-md,
 body.splash .page-col,
 body.splash .footer,
 body.splash .intro-header,
 body.splash .content,
-body.splash footer,
-body.splash .well,
-body.splash .panel {
-  background: transparent !important;
-  color: #F3F3F3 !important;
-  box-shadow: none !important;
-  border: none !important;
+body.splash footer {
+  background: transparent;
+  color: var(--color-font-main);
+  box-shadow: none;
+  border: none;
 }
-
-/* hide nav and footer on splash */
 body.splash .navbar,
 body.splash .footer,
 body.splash footer,
 body.splash .footer *,
 body.splash footer * {
-  display: none !important;
+  display: none;
 }
-
-/* animated dots bg fills viewport */
 #splash-background {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  background: linear-gradient(135deg, #116466 0%, #2C3531 100%) !important;
-  pointer-events: none;
-  overflow: hidden;
+  position: fixed; top:0; left:0; right:0; bottom:0;
+  width:100vw; height:100vh; z-index:0;
+  background: linear-gradient(135deg, #116466 0%, #2C3531 100%);
+  pointer-events: none; overflow: hidden;
 }
-#splash-background, #splash-background canvas {
-  display: block !important;
-  z-index: 0 !important;
-}
-
-/* splash hero block above dots bg */
 .splash-hero {
-  position: relative;
-  z-index: 2;
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  position: relative; z-index: 2; min-height: 80vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
   padding-top: 8vh;
 }
-.splash-hero h1 {
-  color: #F3F3F3 !important;
-  font-size: 3em;
-  margin-top: 1.2em;
-  margin-bottom: 0.25em;
-  letter-spacing: 1px;
-  font-weight: bold;
-}
-.splash-intro {
-  color: #F3F3F3 !important;
-  font-size: 1.25em;
-  margin-bottom: 2em;
-}
+.splash-hero h1 { color: var(--color-font-main); font-size: 3em; font-weight: bold; }
+.splash-intro { color: var(--color-font-main); font-size: 1.25em; margin-bottom: 2em; }
 .splash-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.3em;
-  justify-content: center;
-  margin-bottom: 2em;
+  display: flex; flex-wrap: wrap; gap: 1.3em; justify-content: center; margin-bottom: 2em;
 }
-
-/* splash nav/site buttons */
+/* ——— Unified style for buttons and pagination ——— */
 .splash-links .site-button,
 .site-button,
 .btn,
-.button {
+.button,
+.pagination .page-link,
+.pagination .page-item .page-link {
   display: inline-block;
   padding: 1em 2.2em;
-  background: #D9B08C;
-  color: #2C3531;
+  background: var(--color-accent-sand);
+  color: var(--color-bg-main);
   border-radius: 40px;
   font-size: 1.25em;
   text-decoration: none;
@@ -104,18 +111,24 @@ body.splash footer * {
   transition: background 0.22s, color 0.22s, box-shadow 0.22s;
   border: none;
 }
-/* fix for splash button text colors */
-body.splash .splash-links .site-button,
-body.splash .site-button {
-  color: #2C3531 !important;
+@media (max-width: 900px) {
+  .pagination .page-link, .pagination .page-item .page-link {
+    font-size: 1em;
+    padding: 0.6em 1.2em;
+    border-radius: 26px;
+  }
 }
-body.splash .splash-links .site-button:hover,
-body.splash .site-button:hover,
-body.splash .splash-links .site-button:focus,
-body.splash .site-button:focus {
-  background: #D1E8E2 !important;
-  color: #116466 !important;
+@media (min-width: 901px) {
+  .pagination .page-link, .pagination .page-item .page-link {
+    font-size: 1.08em;
+    padding: 0.8em 1.7em;
+    border-radius: 32px;
+  }
 }
+.pagination .page-link:hover,
+.pagination .page-item .page-link:hover,
+.pagination .page-link:focus,
+.pagination .page-item .page-link:focus,
 .splash-links .site-button:hover,
 .site-button:hover,
 .btn:hover,
@@ -124,139 +137,315 @@ body.splash .site-button:focus {
 .site-button:focus,
 .btn:focus,
 .button:focus {
-  background: #D1E8E2 !important;
-  color: #116466 !important;
+  background: var(--color-accent-mint);
+  color: #116466;
   box-shadow: 0 0 0 rgba(0,0,0,0.18);
 }
-
-/* nav bar, footer, dropdowns */
-.navbar, .footer, footer {
-  background: #116466 !important;
-  color: #D1E8E2 !important;
-  box-shadow: none !important;
+.pagination .disabled .page-link,
+.pagination .page-link.disabled {
+  background: #444 !important;
+  color: #aaa !important;
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.7;
   border: none !important;
 }
-.navbar .navbar-brand,
-.navbar a,
-.navbar-nav .nav-link {
-  color: #D9B08C !important;
+.pagination .page-link,
+.pagination .page-item .page-link {
+  border: none !important;
+  box-shadow: none !important;
 }
-.navbar .navbar-brand:hover,
-.navbar-nav .nav-link:hover,
-.navbar a:hover {
-  color: #D1E8E2 !important;
+
+/* ——— Navbar, Footer, Dropdowns ——— */
+.navbar, .footer, footer {
+  background: var(--color-bg-footer);
+  color: var(--color-accent-mint);
+  box-shadow: none; border: none;
 }
-.navbar-border {
-  border-color: #2C3531 !important;
+.navbar .navbar-brand, .navbar a, .navbar-nav .nav-link {
+  color: var(--color-accent-sand);
+  text-decoration: none !important;
+}
+.navbar .navbar-brand:hover, .navbar-nav .nav-link:hover, .navbar a:hover {
+  color: var(--color-accent-mint);
 }
 .dropdown-menu {
-  background-color: #116466 !important;
-  color: #F3F3F3 !important;
-  border: none !important;
+  background-color: var(--color-bg-footer);
+  color: var(--color-font-main);
+  border: none;
 }
-.dropdown-item {
-  color: #F3F3F3 !important;
-  background-color: transparent !important;
-}
+.dropdown-item { color: var(--color-font-main); background-color: transparent; }
 .dropdown-item:hover, .dropdown-item:focus {
-  color: #116466 !important;
-  background-color: #D9B08C !important;
+  color: #116466;
+  background-color: var(--color-accent-sand);
   font-weight: 600;
 }
-.dropdown-item:focus, .dropdown-item:active {
-  outline: none !important;
-  box-shadow: none !important;
+.dropdown-menu:focus, .dropdown-menu:active, .dropdown.show .dropdown-toggle:focus, .navbar-nav .show > .nav-link:focus, .navbar-nav .show > .nav-link:active {
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 
-/* social links */
-.footer a, .footer a:visited {
-  color: #D1E8E2 !important;
-}
-.footer a:hover {
-  color: #F3F3F3 !important;
-}
-.footer strong, .footer .copyright, .footer .author, .footer .site-title {
-  color: #D9B08C !important;
-  font-weight: 700;
-}
+.footer a, .footer a:visited,
 .footer .fa, .footer .fab, .footer .fas {
-  color: #D1E8E2 !important;
-  transition: color 0.18s;
+  color: var(--color-accent-mint);
+  text-decoration: none !important;
 }
-.footer .fa:hover, .footer .fab:hover, .footer .fas:hover {
-  color: #D9B08C !important;
+.footer a:hover { color: var(--color-font-main); }
+.footer strong, .footer .copyright, .footer .author, .footer .site-title {
+  color: var(--color-accent-sand); font-weight: 700;
 }
-
-/* force all footer/container backgrounds transparent */
+.footer .fa:hover, .footer .fab:hover, .footer .fas:hover { color: var(--color-accent-sand); }
 .footer *, .footer .container, .footer .container-md, .footer .footer-inner,
 footer *, footer .container, footer .container-md, footer .footer-inner {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: transparent; border: none; box-shadow: none;
 }
 
-/* headings, text, and links */
-h1, h2, h3, h4, h5, h6,
-.site-title, .site-description, .author, .blog-tags {
-  color: #F3F3F3 !important;
+/* ——— Notification Boxes and Admonition ——— */
+.box-note, .box, .note, .highlight, .admonition, .notice {
+  background: var(--color-bg-card);
+  color: var(--color-font-main);
+  border-left: 6px solid var(--color-accent-sand);
+  border-radius: 10px;
+  box-shadow: none;
+  margin: 1.2em 0;
+  padding: 1.2em 1.8em;
 }
-p, li, blockquote, .post-entry, .post-content, .well, .panel {
-  color: #F3F3F3 !important;
+.box-note {
+  background: var(--color-bg-panel);
+  border-left: 5px solid var(--color-accent-sand);
+  border-radius: 7px;
+  padding: 1.2em 1.5em;
 }
-a, .page-col a, .content a {
-  color: #D9B08C !important;
-}
-a:hover, .page-col a:hover, .content a:hover {
-  color: #D1E8E2 !important;
+.box-warning { background: var(--color-bg-main); border-left: 5px solid var(--color-accent-mint);}
+.box-error   { background: var(--color-bg-main); border-left: 5px solid var(--color-accent-err);}
+.box-success { background: var(--color-bg-card); border-left: 5px solid var(--color-accent-green);}
+.box-note strong, .note strong, .highlight strong { color: var(--color-accent-sand); }
+.box-note a, .note a, .highlight a { color: var(--color-accent-sand); text-decoration: underline; }
+.box-note a:hover, .note a:hover, .highlight a:hover { color: var(--color-accent-mint); }
+.box-note h1, .box-note h2, .box-note h3 { color: var(--color-accent-sand); }
+
+@media (max-width: 600px) {
+  .box, .note, .highlight, .admonition, .notice, .box-note {
+    padding: 1em 0.8em; border-radius: 6px;
+  }
 }
 
-/* page/post content containers/cards */
-.card, .post-preview, .well, .panel, .post-entry, .post-content, .page-col, .content, .container, .container-md {
-  background: #2C3531 !important;
-  color: #F3F3F3 !important;
-  box-shadow: none !important;
-  border: none !important;
+/* ——— Page/post containers ——— */
+.card, .post-preview, .well, .panel, .post-entry, .post-content, .page-col, .container, .container-md {
+  background: var(--color-bg-main);
+  color: var(--color-font-main);
+  box-shadow: none;
+  border: none;
 }
 
-/* responsive (mobile) */
+/* ——— CODE: Inline/Blocks/Highlight ——— */
+/* Inline code OUTSIDE .box-note: lighter dark box */
+code, .post-content code, .page-col code {
+  display: inline;
+  padding: 0.08em 0.36em 0.1em 0.36em;
+  background: var(--color-bg-card) !important;
+  color: var(--color-accent-mint) !important;
+  border-radius: 5px;
+  font-size: 1em;
+  font-family: "Fira Mono", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
+  box-shadow: none;
+  border: none;
+  margin: 0 0.08em;
+  word-break: break-word;
+}
+
+/* Inline code IN .box-note: deep dark box */
+.box-note code {
+  background: var(--color-bg-panel) !important;
+  color: var(--color-accent-mint) !important;
+}
+
+/* No underline on inline code links, ever */
+code a, a code { color: inherit !important; text-decoration: none !important; }
+
+/* ——— Code blocks (fenced/highlight/pre) wrap text ——— */
+pre, .highlight pre, .box-note pre, .box-note code, .box-note .highlight {
+  display: block;
+  background: var(--color-bg-panel);
+  color: var(--color-font-main);
+  border-radius: 5px;
+  box-shadow: none;
+  border: none;
+  padding: 0.38em 0.8em;
+  margin: 0.8em 0;
+  font-size: 1em;
+  line-height: 1.38;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-x: visible;
+}
+.box-note pre, .box-note code, .box-note .highlight {
+  background: #191F1D;
+  color: var(--color-accent-mint);
+}
+pre code, .highlight code {
+  background: none !important;
+  color: inherit !important;
+  border-radius: 0;
+  font-size: inherit;
+  padding: 0 !important;
+}
+
+/* No double border/box in .highlight */
+.highlight, .highlighter-rouge {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ——— Syntax Highlighting: Prompt, variable, string, operator, error distinctly colored ——— */
+.highlight .gp, .highlight .prompt {
+  color: var(--color-accent-prompt) !important;
+  background: none !important;
+  font-weight: bold;
+}
+.highlight .nv {
+  color: var(--color-accent-mint) !important;
+  font-weight: normal;
+}
+.highlight .s {
+  color: var(--color-accent-sand) !important;
+}
+.highlight .o {
+  color: var(--color-accent-mint) !important;
+}
+.highlight .err {
+  color: #a34343 !important;
+  background: none !important;
+}
+.highlight .k, .highlight .nb,
+.highlight .kd, .highlight .kp, .highlight .kr, .highlight .kt,
+.highlight .nt, .highlight .n, .highlight .na {
+  color: var(--color-accent-mint) !important;
+}
+.highlight .go { color: var(--color-accent-mint) !important; background: none !important; }
+
 @media (max-width: 600px) {
   .splash-hero { padding-top: 4vh; min-height: 70vh; }
   .splash-links { flex-direction: column; gap: .9em; }
   .site-button { width: 90%; font-size: 1em; }
 }
 
-/* remove text-shadow on headings if theme adds it */
-h1, h2, h3, h4, h5, h6 {
-  text-shadow: none !important;
-}
-
-/* remove bootstrap blue outline/glow on dropdowns by overriding box-shadow and outline for focused toggles/nav-links */
-.dropdown-menu:focus, .dropdown-menu:active, 
-.dropdown.show .dropdown-toggle:focus, 
-.navbar-nav .show > .nav-link:focus, 
-.navbar-nav .show > .nav-link:active {
-  outline: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-}
-
-/* force all dropdown items to have your color scheme on focus */
-.dropdown-item:focus, .dropdown-item:active, .dropdown-item:visited, .dropdown-item:hover {
-  background: #D9B08C !important;
-  color: #116466 !important;
-}
-
-/* remove box-shadow from .dropdown-toggle button if used */
+/* ——— Misc. Tidy-ups ——— */
 .dropdown-toggle:focus, .dropdown-toggle:active {
-  outline: none !important;
-  box-shadow: none !important;
-  background: #D9B08C !important;
-  color: #116466 !important;
+  outline: none;
+  box-shadow: none;
+  background: var(--color-accent-sand);
+  color: #116466;
+}
+.dropdown-menu, .dropdown-menu:focus, .dropdown-menu:active, .dropdown-toggle, .dropdown-toggle:focus {
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
 }
 
-/* extra kill-switch for odd border or glow */
-.dropdown-menu, .dropdown-menu:focus, .dropdown-menu:active, .dropdown-toggle, .dropdown-toggle:focus {
-  border-radius: 0 !important;
-  outline: none !important;
+:root {
+  --code-bg: #1d2321;
+  --code-fg: #E3F6F1;
+  --highlight-mint: #D1E8E2;
+  --highlight-sand: #D9B08C;
+  --highlight-softred: #A95353;
+  --highlight-note: #A6B5A8;
+}
+
+/* Block & inline code */
+pre, .highlight pre, .box-note pre {
+  background: var(--code-bg) !important;
+  color: var(--code-fg) !important;
+  border-radius: 7px !important;
+  border: 1.5px solid #233029 !important;
+  box-shadow: 0 2px 20px rgba(30,45,40,0.12) !important;
+  padding: 1.1em 1.4em !important;
+  margin: 1.3em 0 !important;
+  font-size: 1em !important;
+  line-height: 1.54 !important;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  display: block !important;
+  overflow-x: visible !important;
+}
+code, .box-note code, .post-content code, .page-col code {
+  display: inline;
+  background: var(--code-bg) !important;
+  color: var(--code-fg) !important;
+  border-radius: 5px !important;
+  border: none !important;
+  padding: 0.1em 0.38em !important;
+  margin: 0 0.1em !important;
+  font-size: 1em !important;
+  font-family: "Fira Mono", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace !important;
   box-shadow: none !important;
+  word-break: break-word;
+}
+.box-note {
+  background: var(--code-bg) !important;
+  border-left: 8px solid var(--highlight-sand) !important;
+  color: var(--code-fg) !important;
+  border-radius: 7px !important;
+  box-shadow: 0 2px 20px rgba(30,45,40,0.12) !important;
+  margin: 1.3em 0 !important;
+  padding: 1.1em 1.4em !important;
+}
+.highlight, .highlighter-rouge {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ======= COLOR RESET: Force all highlight classes to base mint-offwhite ======= */
+.highlight span,
+.highlight .c, .highlight .err, .highlight .g, .highlight .k, .highlight .l,
+.highlight .n, .highlight .o, .highlight .x, .highlight .p, .highlight .cm,
+.highlight .cp, .highlight .c1, .highlight .cs, .highlight .gd, .highlight .ge,
+.highlight .gr, .highlight .gh, .highlight .gi, .highlight .go, .highlight .gp,
+.highlight .gs, .highlight .gu, .highlight .gt, .highlight .kc, .highlight .kd,
+.highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt, .highlight .m,
+.highlight .s, .highlight .na, .highlight .nb, .highlight .nc, .highlight .no,
+.highlight .nd, .highlight .ne, .highlight .nf, .highlight .ni, .highlight .nl,
+.highlight .nn, .highlight .nx, .highlight .py, .highlight .nt, .highlight .nv,
+.highlight .ow, .highlight .w, .highlight .mb, .highlight .mf, .highlight .mh,
+.highlight .mi, .highlight .mo, .highlight .il, .highlight .dl, .highlight .sd,
+.highlight .ss, .highlight .si, .highlight .se, .highlight .s1, .highlight .s2,
+.highlight .sr, .highlight .sb, .highlight .sc, .highlight .u, .highlight .g, .highlight .gs,
+.highlight .gd, .highlight .gi, .highlight .gr, .highlight .gt, .highlight .gu
+{
+  color: var(--code-fg) !important;
+  background: none !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  text-decoration: none !important;
+}
+
+/* ======= RE-APPLY only desired pop colors below ======= */
+.highlight .gp, .highlight .prompt {
+  color: var(--highlight-softred) !important;
+  font-weight: bold !important;
+}
+.highlight .nv {
+  color: var(--highlight-softred) !important;
+  font-weight: bold !important;
+}
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .sd,
+.highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx,
+.highlight .sr, .highlight .s1, .highlight .ss {
+  color: var(--highlight-sand) !important;
+}
+.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs, .highlight .cp {
+  color: var(--highlight-note) !important;
+  font-style: italic !important;
+}
+/* Optional: error red for err only when it's not a prompt or variable */
+.highlight .err {
+  color: var(--highlight-softred) !important;
+  font-weight: normal !important;
 }
