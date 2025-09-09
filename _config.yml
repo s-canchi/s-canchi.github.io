@@ -21,8 +21,7 @@ navbar-links:
   About Me: "aboutme"
   Publications: "publications"
   Blog: "blog"
-  Projects:
-    - CFDE: "https://www.nih-cfde.org"
+  Projects: "projects"
   Resources:
     - Useful Links: "links"
     - Data Carpentry: "https://datacarpentry.org"
@@ -134,8 +133,8 @@ site-css:
   - "/assets/css/custom-styles.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
-#site-js:
-#  - "/assets/js/animated-dots.js"
+site-js:
+  - "/assets/js/open-tab-newpg.js"
 
 # --- Web Analytics Section --- #
 
