@@ -241,24 +241,32 @@ footer *, footer .container, footer .container-md, footer .footer-inner {
 
 /* ——— CODE: Inline/Blocks/Highlight ——— */
 /* Inline code OUTSIDE .box-note: lighter dark box */
-code, .post-content code, .page-col code {
-  display: inline;
-  padding: 0.08em 0.36em 0.1em 0.36em;
-  background: var(--color-bg-card) !important;
+code, .post-content code, .page-col code, .box-note code {
+  display: inline !important;
+  background: transparent !important;
   color: var(--color-accent-mint) !important;
-  border-radius: 5px;
-  font-size: 1em;
-  font-family: "Fira Mono", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
-  box-shadow: none;
-  border: none;
-  margin: 0 0.08em;
+  border-radius: 0 !important;
+  border: none !important;
+  font-size: 1em !important;
+  font-family: "Fira Mono", "SFMono-Regular", Menlo, Monaco, "Liberation Mono", monospace !important;
+  padding: 0 !important;
+  margin: 0 0.05em !important;
+  box-shadow: none !important;
   word-break: break-word;
+  white-space: pre-wrap !important; /* ensures line wrapping in box-notes */
 }
 
 /* Inline code IN .box-note: deep dark box */
 .box-note code {
-  background: var(--color-bg-panel) !important;
+  display: inline !important;
+  background: transparent !important;
   color: var(--color-accent-mint) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 0.05em !important;
+  box-shadow: none !important;
+  white-space: pre-wrap !important; /* always wrap inline code in notes */
 }
 
 /* No underline on inline code links, ever */
@@ -371,4 +379,11 @@ code, .post-content code, .page-col code, .box-note code {
 /* Single-quoted strings: soft red */
 .highlight .s1 {
   color: var(--color-accent-err) !important;
+}
+
+/* Adjust table background */
+table th, table td {
+  border: 1px solid #444 !important;
+  padding: 0.5em 1em;
+  background: #233029 !important;
 }
