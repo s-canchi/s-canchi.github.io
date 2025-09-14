@@ -6,7 +6,8 @@ tags: [Slurm, bash, HPC]
 comments: true
 ---
 
-When analyzing dozens or thousands of omics datasets, it is essential to parallelize the compute. In this post, I showcase a couple of ways for large-scale batch analysis on high-performance computing (HPC).
+When analyzing dozens or thousands of omics datasets, it is essential to parallelize the compute. In this post, I showcase a couple of ways for large-scale batch analysis on high-performance computing (HPC), specifically focusing on cases where each sample can be processed independently using the same workflow and comparable computational resources.
+
 
 ## What is Slurm ? 
 
