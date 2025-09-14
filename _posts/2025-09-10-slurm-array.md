@@ -161,14 +161,23 @@ K = desired chunk size i.e., samples/chunk (should be ≤ MaxArraySize)
 N = number of array jobs (chunks)
 
 # Optimal chunk size to allow maximum parallelism 
-## Actual parallel jobs running/user = min(user concurrency limit, available resources, partition policies) which is usually less than N.
-## Use min of N and user limits to get the optimal chunk size
+
+## Actual parallel jobs running/user = min(user concurrency limit, available resources, partition policies) is usually less than the theoretical maximum number of array jobs N.
 
 N = MaxArraySize
-K = ceil(S / N)
 
-# Then, split the samples into N chunk files 
-(each up to K samples)
+# Compute the initial chunk size:    
+K_initial = ceil(S / N)
+
+## For improved efficiency and resource management,
+select a smaller chunk size by dividing the initial value by a factor (e.g., 4 or 5):
+K = max(1, floor(K_initial / FACTOR))
+
+# Recompute the number of chunks:
+N_chunks = ceil(S / K)
+
+#Split the samples into N_chunks chunk files
+(each with up to K samples)
 ```
 
 {: .box-note}
@@ -199,9 +208,16 @@ fi
 N=$MAX_ARRAY_SIZE
 
 # Get optimal chunk size
-K=$(( (S + N - 1) / N ))
+## Factor of 4 or 5 is generally advisable - can be increased to reduce per array resource usage
+OPTIMAL_FACTOR=4 
+K=$(( ((S + N - 1) / N) / OPTIMAL_FACTOR ))
+if [ "$K" -lt 1 ]; then
+  K=1
+fi
 
-echo "Splitting $S samples into $N chunks (each with up to $K samples)..."
+N_CHUNKS=$(( (S + K - 1) / K ))    
+
+echo "Splitting $S samples into $N_CHUNKS chunks (each with up to $K samples)..."
 
 mkdir -p chunks
 
