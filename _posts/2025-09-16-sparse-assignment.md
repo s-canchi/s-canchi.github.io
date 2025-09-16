@@ -24,7 +24,7 @@ for (j in chunk_indices) {
 }
 ```
 
-## Block assignment and de novo build
+## Block assignment and *de novo* build
 
 This approach assembles chunks of columns by building blocks using `cbind` and by constructing a new matrix from blocks built up from the data.
 
@@ -36,7 +36,7 @@ downsmpl_mat[, chunk_indices] <- chunk_mat
 
 ## Triplet build and convert
 
-Here, the matrix is assembled in triplet (coordinate) form, allowing for easier incremental construction, and then converted to compressed column format at the end.
+Here, the matrix is assembled in triplet (coordinate) form (`dgTMatrix`), allowing for easier incremental construction, and then converted to compressed column format at the end.
 
 ```R
 triplet <- as.data.frame(summary(as(chunk_mat, "dgCMatrix")))
@@ -56,25 +56,27 @@ I performed benchmarks using `bench::mark()` on a representative chunk of 100 co
 | Method                                 | Median Time | Memory Allocated | Description                                  |
 |-----------------------------------------|-------------|------------------|----------------------------------------------|
 | Column-wise assignment                  | 9.19 sec    | 299 MB           | One-at-a-time assignment of columns          |
-| Block assignment + de novo build        | 9.02 sec    | 21.1 MB          | Assigns all columns of a block in one go     |
+| Block assignment + *de novo* build        | 9.02 sec    | 21.1 MB          | Assigns all columns of a block in one go     |
 | Triplet (COO) build and convert         | 0.025 sec   | 24.3 MB          | Builds using (i, j, x) triplets and converts |
 
 The triplet method is over 350× faster than either block or column-wise assignment and significantly more memory efficient. For large-scale sparse matrix assembly in R, always prefer triplet construction with a one-step conversion to compressed format.
 
 ## Why is sparse matrix assignment so painful in R?
 
-**Inefficient under the hood**<br>
+Despite being a vital data structure for high-dimensional analyses, R's sparse matrices turn routine assignment into a surprising bottleneck. Here is why:
+
+* **Inefficient under the hood:**
 `dgCMatrix` uses a compressed sparse column (CSC) format. Every time a column is assigned, the entire sparse structure needs to be reshuffled, re-indexed, and sometimes fully copied. This makes repeated assignments extremely slow and memory-hungry, especially for large matrices.
 
-**Always single-threaded**<br>
+* **Always single-threaded:**
 Assignment is always limited to a single core in R which is by design. Thus, updates to a sparse matrix cannot be safely performed in parallel. R prevents multiple cores from writing to the same matrix at once to avoid data corruption, so adding more CPUs will not speed up assignment.
 
-**Optimized for matrix algebra, not assignment**<br>
+* **Optimized for matrix algebra, not assignment:**
 Libraries like `Matrix` or backends like `OpenBLAS/MKL` in R are optimized for high-performance matrix algebra (multiplication, decomposition, solving, etc.), but not for assignment or structural changes. In-place edits get none of these speedups.
 
 ## Can you use out-of-core approaches to bypass the problem ?
 
-Using `DelayedArray` and `HDF5Array`, you can process matrices larger than your available RAM, but chunk writing comes with major caveats.
+Curious whether out-of-core solutions could speed up sparse matrix mutation, I tested `DelayedArray` and `HDF5Array` to write data in chunks to disk. My workflow was:
 
 ```R
 library(DelayedArray)
@@ -101,11 +103,11 @@ final_mat_delayed <- realize(sink)
 
 **Key limitations**
 
-* Dense conversion required: Each sparse chunk (`dgCMatrix`) must be converted to a dense matrix before disk writing, which can spike RAM usage and limit scalability for large, sparse datasets.
+* Dense conversion required: Each sparse chunk (`dgCMatrix`) had to be converted to dense before writing, causing major RAM spikes and eliminating the potential scalability and speed benefits for large, sparse data.
 
-* No persistent row/column names: HDF5Array does not save row or column names with the data. You must manually re-attach these after loading.
+* No persistent row/column names: HDF5Array does not save row or column names with the data. I had to restore them manually after loading.
 
-* Single-core bottleneck: All assignment and disk I/O happens on one core; there’s no parallel speedup for writing or conversion.
+* Single-core bottleneck: Assignment and disk I/O still used just one CPU core, with no speed gain from parallelization, so mutation remained slow despite using disk.
 
 # Fast Sparse Mutation vs AnnData/Scanpy Compatibility
 
@@ -143,4 +145,10 @@ adata.X = adata.X.tocsr()
 # Takeaways
 
 Downsampling large sc matrices is a tempting way to equalize sequencing depth, but the technical bottlenecks, especially for in-place sparse assignment are substantial. 
-Even in popular tools like Seurat or Scanpy, built-in downsampling functions are primarily designed for simulation, benchmarking, or sanity checks and not as a standard preprocessing strategy. Statistical modeling and regression approaches to account for depth bias or technical covariates are typically more robust, reproducible, and recommended than aggressive downsampling.
+Even in popular tools like Seurat or Scanpy, built-in downsampling functions are primarily designed for simulation, benchmarking, or sanity checks and not as a standard preprocessing strategy. Statistical modeling and regression approaches to account for depth bias or technical covariates are typically more robust, reproducible, and recommended than aggressive downsampling. However, if you do need to downsample:
+
+**R**: build the matrix *de novo* using the triplet (`dgTMatrix`) format for efficient construction and conversion
+
+**Python**: leverage the LIL format for fast batch assignment but convert back to CSC/CSR for downstream analysis
+
+
