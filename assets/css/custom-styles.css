@@ -387,3 +387,17 @@ table th, table td {
   padding: 0.5em 1em;
   background: #233029 !important;
 }
+
+/* space between a post heading and the content under it */
+.blog-post h1, .blog-post h2, .blog-post h3, .blog-post h4 {
+  margin-bottom: 1rem;
+}
+
+/* table with a narrow first column and two equal columns after it */
+.blog-post table.even-cols {
+  table-layout: fixed;
+  width: 100%;
+}
+.blog-post table.even-cols th:first-child { width: 24%; }
+.blog-post table.even-cols th:nth-child(2),
+.blog-post table.even-cols th:nth-child(3) { width: 38%; }
